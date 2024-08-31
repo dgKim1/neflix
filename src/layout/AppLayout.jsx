@@ -8,7 +8,7 @@ function AppLayout() {
   return (
     <div>
     <Navbar  className='netflix-navbar'>
-      <Container>
+      <Container className='nav-container'>
         <Link to='/'><Navbar.Brand  id='netflix-logo'><img src='https://about.netflix.com/images/logo.png' width={150}/></Navbar.Brand></Link>
           <Nav className="me-auto">
           <Link to="/" className='menu-home' >Home</Link>

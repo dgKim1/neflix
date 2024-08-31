@@ -3,6 +3,10 @@
     margin-right: 0px;
 }
 
+.nav-container{
+    margin-left: 0;
+}
+
 .menu-home,
 .menu-movies{
     text-decoration-line: none;
