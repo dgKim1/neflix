@@ -1,0 +1,32 @@
+#netflix-logo{
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+.menu-home,
+.menu-movies{
+    text-decoration-line: none;
+    color: white;
+    margin-right: 10px;
+}
+
+.menu-text{
+    color: white;
+}
+.me-2{
+    background-color: hsl(0, 2%, 26%);
+}
+.me-2:focus{
+    border: none;
+}
+.nav-link{
+    color: white;
+}
+.nav-link:focus{
+    color: white;
+}
+
+
+.netflix-navbar{
+    background-color: black;
+}
