@@ -29,8 +29,99 @@
 .nav-link:focus{
     color: white;
 }
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  .sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
+
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  .sidenav-bttn{
+    font-size: 0;
+    display: none;
+  }
+
+  .mobile-nav{
+    display: none;
+  }
+
+  .com-nav{
+    display: block;
+  }
 
 
-.netflix-navbar{
+  .netflix-navbar{
     background-color: black;
 }
+.search-box-com{
+    display: flex;
+}
+.search-box-mobile{
+    display: none;
+}
+
+  @media screen and (max-width: 600px) {
+    .sidenav-bttn{
+        display: block;
+        font-size: 36px;
+        position: absolute;
+       top: 0;
+       right: 0px;
+       margin-left: 50px;
+       background-color: transparent;
+       color: white;
+        border: 0px;
+    }
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+
+    .mobile-nav{
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .com-nav{
+        display: none;
+    }
+
+    .search-box-mobile{
+        display: block;
+        width: 200px;
+    }
+
+
+    .search-box-com{
+        width: 0px;
+        display: none;
+    }
+
+  }
+

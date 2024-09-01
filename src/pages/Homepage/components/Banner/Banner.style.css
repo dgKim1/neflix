@@ -30,3 +30,14 @@
 
 }
 
+
+
+@media (max-width: 600px) {
+    .text-area p
+    {
+        display: none;
+    }
+}
+
+
+
