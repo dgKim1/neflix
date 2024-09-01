@@ -106,6 +106,7 @@
         display: flex;
         align-items: center;
         margin-bottom: 15px;
+        margin-left: 15px;
     }
 
     .com-nav{
@@ -115,6 +116,11 @@
     .search-box-mobile{
         display: block;
         width: 200px;
+    }
+    .search-box-com input,
+    .search-box-com button
+    {
+      display: none;
     }
 
 
