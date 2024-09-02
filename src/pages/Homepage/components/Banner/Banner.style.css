@@ -30,14 +30,17 @@
 
 }
 
-
-
-@media (max-width: 600px) {
-    .text-area p
-    {
-        display: none;
+@media screen and (max-width: 600px){
+    .text-area h1{
+        font-size: medium;
+    }
+    .text-area p{
+        font-size: x-small;
     }
 }
+
+
+
 
 
 

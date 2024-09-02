@@ -52,10 +52,8 @@ function AppLayout() {
             <a href="#" onClick={closeNav} className="closebtn">
               &times;
             </a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
+            <a href="/">Home</a>
+            <a href="/movies">Movies</a>
           </div>
           <button onClick={openNav} className="sidenav-bttn">
             <MdOutlineMenu />
@@ -69,15 +67,6 @@ function AppLayout() {
         <Link to="/movies" className="menu-movies">
           Movies
         </Link>
-        <Form className="d-flex search-box-mobile">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-danger">Search</Button>
-          </Form>
       </Nav>
       <Outlet />
     </div>

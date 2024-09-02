@@ -112,11 +112,6 @@
     .com-nav{
         display: none;
     }
-
-    .search-box-mobile{
-        display: block;
-        width: 200px;
-    }
     .search-box-com input,
     .search-box-com button
     {
@@ -125,7 +120,6 @@
 
 
     .search-box-com{
-        width: 0px;
         display: none;
     }
 
