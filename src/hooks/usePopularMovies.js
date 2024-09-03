@@ -11,5 +11,5 @@ export const usePopularMoviesQuery=() => {
         queryFn: fetchPopularMovies,
         select: (result) => result.data
 
-    })
+    });
 }
