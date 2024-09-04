@@ -27,7 +27,7 @@
 
 .text-area > *{
     z-index: 2;
-
+    background-color: transparent;
 }
 
 @media screen and (max-width: 600px){
