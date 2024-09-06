@@ -17,8 +17,9 @@
 .menu-text{
     color: white;
 }
-.me-2{
-    background-color: hsl(0, 2%, 26%);
+.search-box-com input{
+    background-color: #6c757d;
+    color: white;
 }
 .me-2:focus{
     border: none;

@@ -1,0 +1,73 @@
+.badge{
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.vote-area{
+    display: flex;
+}
+
+.overview{
+    margin-top: 15px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.category{
+    margin-bottom: 20px;
+}
+.review-box{
+    border: 2px solid #dc3545;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+
+.badge{
+    margin-top: 10px;
+}
+
+.preview{
+    margin-left: 10px;
+}
+
+.star-imoticon{
+    margin-right: 10px;
+}
+
+.review-box h3{
+    font: bold;
+}
+
+
+.review-related{
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+
+.review-related button{
+    margin-right: 10px;
+}
+.review-related button:nth-child(2){
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+.toggle-bttn {
+    text-decoration: underline;
+    color: white;
+}
+
+.modal-content{
+    background-color: transparent;
+}
+
+.closebttn{
+    color: white;
+}

@@ -2,9 +2,11 @@ import React from 'react'
 import { Badge } from 'react-bootstrap';
 import "./MovieCard.style.css";
 import { useMovieGenreQuery } from '../../../../hooks/useMovieGenre';
+import { useNavigate } from 'react-router-dom';
 
 function MovieCard({movie}) {
   const {data:genreData} = useMovieGenreQuery();
+  const navigate = useNavigate();
 
   const showGenre = (genreIdList) => {
     if(!genreData) return [];
@@ -24,6 +26,7 @@ function MovieCard({movie}) {
       }
     }
     className='movie-card'
+    onClick={()=>navigate(`/movies/${movie.id}`)}
     >
       <div className='overlay p-2'>
         <h1>{movie.title}</h1>
@@ -32,7 +35,7 @@ function MovieCard({movie}) {
             <Badge bg='danger'>{id}</Badge>
           ))
         }
-        <div >
+        <div>
         <div>{movie.vote_average}</div>
         <div>{movie.popularity}</div>
         <div>{movie.adult ? "over18": "under18"}</div>

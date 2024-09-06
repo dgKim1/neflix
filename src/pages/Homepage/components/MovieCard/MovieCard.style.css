@@ -16,7 +16,11 @@
     font-weight: bold;
     overflow-wrap: break-word;
 }
-
+.overlay h1,
+.overlay div
+{
+    background-color: transparent;
+}
 .overlay:hover{
     opacity: 1;
 }

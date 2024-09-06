@@ -1,4 +1,39 @@
-.select-filter{
-    color: rgb(185, 183, 183);
+.genre-bttns{
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.pagination{
+    margin-top: 15px;
+}
+
+.pagination a
+{
+    background-color: #dc3545;
+    color: white;
+}
+
+.pagination a:hover
+{
     background-color: white;
+    color: #dc3545;
+
+}
+.pagination li:first-child,
+.disabled>.page-link
+{
+    background-color: #dc3545;
+    color: white;
+}
+.active>.page-link, .page-link.active{
+    background-color: white;
+    color: #dc3545;
+    border-color: transparent;
+}
+
+.dropdown{
+    margin-bottom: 1rem;
+}
+.movie-card{
+    margin-bottom: 2rem;
 }

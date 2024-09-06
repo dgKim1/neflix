@@ -7,10 +7,6 @@ import "./Banner.style.css";
 function Banner() {
   const {data,isLoading,error,isError} = usePopularMoviesQuery();
 
-  if (matchMedia("screen and (max-width: 600px)").matches) {
-    console.log("hello");
-  }
-
   if(isLoading){
     return (<h1>...Loading...</h1>);
   }
