@@ -47,4 +47,8 @@
         width: 104px;
     height: 37.6px;
     }
+    .pagination li:last-child a{
+        width: 80px;
+    height: 37.6px;
+    }
 }
