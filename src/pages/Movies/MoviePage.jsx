@@ -1,76 +1,101 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { useSearchAllMovieQuery, useSearchMovieQuery } from '../../hooks/useSearchMovie';
-import { Alert, Button, Col, Container, Dropdown, Row, Spinner } from 'react-bootstrap';
+import { Alert, Button, Col, Container, Dropdown, DropdownButton, Row, Spinner } from 'react-bootstrap';
 import MovieCard from '../Homepage/components/MovieCard/MovieCard';
 import ReactPaginate from 'react-paginate';
 import { MdFilterAlt } from "react-icons/md";
 import "./MoviePage.style.css";
 import { useMovieGenreQuery } from '../../hooks/useMovieGenre';
+import { FaCaretUp } from "react-icons/fa";
+import { FaCaretDown } from "react-icons/fa";
 
 
 function MoviePage(){
   const [query,setQuery] = useSearchParams();
   const [page,setPage] = useState(1);
-  const [filter,setFilter] = useState(null);
-  const [isSort,setIsSort] = useState(false);
-  const [isFilter,setIsFilter] = useState(false);
+  const [sortName,setSortName] = useState(null);
+  const [sortTitle,setSortTitle] = useState("Sort");
+  const [genreId,setGenreId] = useState(null);
+  let keyword = query?.get('q');
 
-  const keyword = query.get('q');
 
   const {data:original,isLoading,isError,error} = useSearchMovieQuery({keyword,page});
-  const {data:allData} = useSearchAllMovieQuery({keyword});
+  const {data:allData} = useSearchAllMovieQuery();
+  const [copyData,setCopyData] = useState([]);
   const {data:genres} = useMovieGenreQuery();
+
   const handlePageClick = ({selected})=>{
     setPage(selected+1);
   }
 
+  const handleSelect = (e)=>{
+    setSortName(e);
+    sortAndFilter(original?.results)
+
+  }
+  const genreFilter = (id)=>{
+    setGenreId(id);
+    setCopyData(original?.results.filter((movie) =>movie.genre_ids.includes(id)));
+      }
 
 
-  const sortPopularity= ()=>{
-    setPage(1);
-    if(page===1) {
-      setFilter(original?.results.sort(
+
+
+  const sortAndFilter= (movies)=>{
+    let filteredMovies = movies;
+    if(genreId!==null) filteredMovies = movies.filter((movie) =>movie.genre_ids.includes(genreId));
+    //장르 필터링 + sorting
+    if(sortName==="popup") {
+      setCopyData(filteredMovies.sort(
       function (a, b) {
-        if (a.popularity < b.popularity) {
-          return 1;
-        }
-        if (a.popularity > b.popularity) {
-          return -1;
-        }
-        // a must be equal to b
-        return 0;
+        return a.popularity-b.popularity;
       }
     ));
     }
-    if(!isSort) setIsSort(true);
-    setIsFilter(false);
+    else if(sortName==="popdown") {
+      setCopyData(filteredMovies.sort(
+      function (a, b) {
+        return b.popularity-a.popularity;
+      }
+    ));
+    }
+    else if(sortName==="voteup") {
+      setCopyData(filteredMovies.sort(
+      function (a, b) {
+        return a.vote_average-b.vote_average;
+      }
+    ));
+    }
+    else if(sortName==="votedown") {
+      setCopyData(filteredMovies.sort(
+      function (a, b) {
+        return b.vote_average-a.vote_average;
+      }
+    ));
+    }
+    //기본 장르 필터링
+    else{
+      setCopyData(filteredMovies)
+    }
   }
 
 
-  const genreFilter = (id)=>{
-    setFilter(allData?.results.filter((movie) =>movie.genre_ids.includes(id)));
-     setIsFilter(true);
-      }
-  useEffect(()=>{
-    isSort&&setFilter(original?.results.sort(
-      function (a, b) {
-        if (a.popularity < b.popularity) {
-          return 1;
-        }
-        if (a.popularity > b.popularity) {
-          return -1;
-        }
-        // a must be equal to b
-        return 0;
-      }
-    ));
-  },[page])
+  useEffect(() => {
+    if (original?.results) {
+        sortAndFilter(original?.results);
+    }
+}, [original, sortName, genreId]);
+
+useEffect(() => {
+    setPage(1);
+    setGenreId(null);
+}, [keyword]);
 
 
-  useEffect(()=>{
-    setFilter(null);
-  },[isSort,page])
+
+  
+
 
 
 
@@ -92,47 +117,39 @@ function MoviePage(){
   }
 
 
-
-
   return (
     <Container>
       <Row>
         <Col lg={4} xs={12}>
-        <Dropdown className='dropdown'>
-      <Dropdown.Toggle variant="secondary" id="dropdown-basic"> 
-        Sort&nbsp;<MdFilterAlt style={ {background: "#6c757d"}} className='filter-icon'/>
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu>
-      <Dropdown.Item onClick={()=>{
-        setIsSort(false)
-        setPage(1);
-        }}>Original</Dropdown.Item>
-        <Dropdown.Item onClick={sortPopularity}>Popularity</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
+        <DropdownButton title={sortTitle} className='dropdown' onSelect={handleSelect} variant='secondary'>
+        <Dropdown.Item eventKey={"popup"} onClick={()=>setSortTitle("Popularity Asc")} >Popularity{<FaCaretUp color='#212529' style={{background: "transparent"}}/>}</Dropdown.Item>
+        <Dropdown.Item  eventKey={"popdown"} onClick={()=>setSortTitle("Popularity Desc")}>Popularity{<FaCaretDown color='#212529' style={{background: "transparent"}}/>}</Dropdown.Item>
+        <Dropdown.Item eventKey={"voteup"} onClick={()=>setSortTitle("Vote Asc")}>Vote{<FaCaretUp color='#212529' style={{background: "transparent"}}/>}</Dropdown.Item>
+        <Dropdown.Item eventKey={"votedown"} onClick={()=>setSortTitle("Vote Desc")} >Vote{<FaCaretDown color='#212529' style={{background: "transparent"}}/>}</Dropdown.Item>
+    </DropdownButton>
         
         </Col>
         <Col lg={8} xs={12}>
           <div className='genre-bttns'>
             <Button variant='danger' className='genre-bttns' 
             onClick={()=>{
-              setIsSort(false);
-              setIsFilter(false);
               setPage(1);
               }}>
               All</Button>
             {
               genres?.map((genre)=>
               (
-              <Button variant="danger" className='genre-bttns' onClick={()=>genreFilter(genre.id)}>{genre.name}</Button>
+              <Button variant="danger" className='genre-bttns' onClick={()=>{
+                genreFilter(genre.id)
+                setPage(1);
+              }}>{genre.name}</Button>
               )
               )
             }
           </div>
         <Row>
-          { filter&&
-          filter.map(
+          { copyData.length!=0&&
+          copyData.map(
             (movie,index) => (
               <Col key={index} lg={4} xs={6}>
               <MovieCard movie={movie} className="movie-card"/>
@@ -141,16 +158,15 @@ function MoviePage(){
           )
             }
             {
-            filter===null&&
-          original.results.map((movie,index) => (
-            <Col key={index} lg={4} xs={6}>
-            <MovieCard movie={movie} className="movie-card"/>
-            </Col>
-          )) 
-          }
+              copyData.length==0&&original?.results.map(
+                (movie,index) => (
+                  <Col key={index} lg={4} xs={6}>
+                  <MovieCard movie={movie} className="movie-card"/>
+                  </Col>
+                )
+              )
+            }
         </Row>
-        {
-          !isFilter &&
         <ReactPaginate
         nextLabel="next >"
         onPageChange={handlePageClick}
@@ -172,7 +188,6 @@ function MoviePage(){
         renderOnZeroPageCount={null}
         forcePage={page-1}
       />
-        }
         </Col>
 
 

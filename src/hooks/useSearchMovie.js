@@ -5,15 +5,14 @@ const fetchSearchMovie = ({keyword,page}) => {
     return keyword ? api.get(`/search/movie?query=${keyword}&page=${page}`)
     :api.get(`/movie/popular?page=${page}`);
 };
-const fetchAllMovie = ({keyword}) => {
-    return keyword ? api.get(`/search/movie?query=${keyword}`)
-    :api.get(`/movie/popular?query=${keyword}`);
+const fetchAllMovie = () => {
+    return api.get(`/movie/popular`);
 };
 
-export const useSearchAllMovieQuery = ({keyword}) => {
+export const useSearchAllMovieQuery = () => {
     return useQuery({
-        queryKey: ['movie-keyword',{keyword}],
-        queryFn: () => fetchAllMovie({keyword}),
+        queryKey: ['movie-keyword'],
+        queryFn: () => fetchAllMovie(),
         select: (result) => result.data
     });
 };
