@@ -17,6 +17,7 @@ function MoviePage(){
   const [sortName,setSortName] = useState(null);
   const [sortTitle,setSortTitle] = useState("Sort");
   const [genreId,setGenreId] = useState(null);
+  const [genreTitle,setGenreTitle] = useState("Genre");
   let keyword = query?.get('q');
 
 
@@ -131,15 +132,11 @@ useEffect(() => {
         </Col>
         <Col lg={8} xs={12}>
           <div className='genre-bttns'>
-            <Button variant='danger' className='genre-bttns' 
-            onClick={()=>{
-              setPage(1);
-              }}>
-              All</Button>
             {
               genres?.map((genre)=>
               (
               <Button variant="danger" className='genre-bttns' onClick={()=>{
+                setGenreTitle(genre.name)
                 genreFilter(genre.id)
                 setPage(1);
               }}>{genre.name}</Button>
@@ -147,7 +144,11 @@ useEffect(() => {
               )
             }
           </div>
+          
         <Row>
+        <div className='genre-title'>
+            <h>{genreTitle}</h>
+          </div>
           { copyData.length!=0&&
           copyData.map(
             (movie,index) => (

@@ -52,3 +52,18 @@
     height: 37.6px;
     }
 }
+.genre-title h{
+    font-size: x-large;
+    text-align: center;
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 15px 10px 15px;
+    border-radius: 10px;
+    
+}
+
+.genre-title{
+    margin-top: 15px;
+    margin-bottom: 25px;
+    transition: all 3s linear;
+}
