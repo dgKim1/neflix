@@ -122,10 +122,10 @@ useEffect(() => {
       <Row>
         <Col lg={4} xs={12}>
         <DropdownButton title={sortTitle} className='dropdown' onSelect={handleSelect} variant='secondary'>
-        <Dropdown.Item eventKey={"popup"} onClick={()=>setSortTitle("Popularity Asc")} >Popularity{<FaCaretUp color='#212529' style={{background: "transparent"}}/>}</Dropdown.Item>
-        <Dropdown.Item  eventKey={"popdown"} onClick={()=>setSortTitle("Popularity Desc")}>Popularity{<FaCaretDown color='#212529' style={{background: "transparent"}}/>}</Dropdown.Item>
-        <Dropdown.Item eventKey={"voteup"} onClick={()=>setSortTitle("Vote Asc")}>Vote{<FaCaretUp color='#212529' style={{background: "transparent"}}/>}</Dropdown.Item>
-        <Dropdown.Item eventKey={"votedown"} onClick={()=>setSortTitle("Vote Desc")} >Vote{<FaCaretDown color='#212529' style={{background: "transparent"}}/>}</Dropdown.Item>
+        <Dropdown.Item eventKey={"popup"} onClick={()=>setSortTitle("Popularity Desc")} >Popularity{<FaCaretUp color='#212529' style={{background: "transparent"}}/>}</Dropdown.Item>
+        <Dropdown.Item  eventKey={"popdown"} onClick={()=>setSortTitle("Popularity Asc")}>Popularity{<FaCaretDown color='#212529' style={{background: "transparent"}}/>}</Dropdown.Item>
+        <Dropdown.Item eventKey={"voteup"} onClick={()=>setSortTitle("Vote Desc")}>Vote{<FaCaretUp color='#212529' style={{background: "transparent"}}/>}</Dropdown.Item>
+        <Dropdown.Item eventKey={"votedown"} onClick={()=>setSortTitle("Vote Asc")} >Vote{<FaCaretDown color='#212529' style={{background: "transparent"}}/>}</Dropdown.Item>
     </DropdownButton>
         
         </Col>
