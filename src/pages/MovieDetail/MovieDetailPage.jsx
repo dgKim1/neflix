@@ -18,6 +18,7 @@ function MovieDetailPage() {
   const params = useParams();
   const id = params.id;
   const {data:movie,isError,error,isLoading} = useMovieDetailQuery(id);
+  console.log(movie);
   const {data:related} = useRecommendMoviesQuery(id)
   const {data:reviews} = useMovieReviewQuery(id);
   const {data:video} = useMovieVideoQuery(id);
@@ -39,7 +40,7 @@ function MovieDetailPage() {
   return (
     <Container>
       <Row>
-      <Col lg={4}><img src={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${movie?.belongs_to_collection.poster_path}`}></img></Col>
+      <Col lg={4}><img src={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${movie?.poster_path}`}></img></Col>
       <Col lg={6}>
       {
           movie?.genres.map((genre)=>(
